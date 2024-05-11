@@ -1,22 +1,18 @@
 {
-  "name": "node_js_prog",
-  "version": "1.0.0",
+  "dependencies": {
+    "daemon": "^1.1.0",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "firebase": "^10.11.1"
+  },
+  "name": "swe-445-phase3",
   "description": "",
-  "main": "files.js",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "backend.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "cookie-parser": "^1.4.6",
-    "ejs": "^3.1.8",
-    "express": "^4.18.2",
-    "express-session": "^1.17.3",
-    "firebase": "^10.11.1",
-    "lodash": "^4.17.21",
-    "nunjucks": "^3.2.3",
-    "serve-favicon": "^2.5.0"
-  }
+  "license": "ISC"
 }

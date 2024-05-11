@@ -1,43 +1,39 @@
+import express from 'express';
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
-const express = require('express');
-const path = require('path');
+import { getFirestore } from 'firebase/firestore/lite';
+// import collection  from 'firebase/firestore/lite';
+// import getDocs from 'firebase/firestore/lite';
 const app = express();
-const favicon = require('serve-favicon')
-const port = process.env.PORT || 8080;
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
-import { initializeApp } from 'firebase/app';
+const port = 5500;
 app.set('view engine', 'ejs');
-
-// TODO: Replace the following with your app's Firebase project configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAtLWxM_PGaHsZaRb4tL8nGjustB0j1B70",
-  authDomain: "swe-445-f4645.firebaseapp.com",
-  projectId: "swe-445-f4645",
-  storageBucket: "swe-445-f4645.appspot.com",
-  messagingSenderId: "538645544148",
-  appId: "1:538645544148:web:6086a9b5807abb22778f41",
-  measurementId: "G-WGFDTGGDVE"
-};
+  apiKey: "AIzaSyARVSNGPiq0VmNDmlci3Vigii2rV79eCp8",
+  authDomain: "swe445-project-ff236.firebaseapp.com",
+  projectId: "swe445-project-ff236",
+  storageBucket: "swe445-project-ff236.appspot.com",
+  messagingSenderId: "509786107712",
+  appId: "1:509786107712:web:338f5ee9de91e2913294a5",
+  measurementId: "G-Y5K6C4KDNE"
+}
 const firebase = initializeApp(firebaseConfig);
-   
+const db = getFirestore(firebase);
 
-app.get('/', function(req, res, next) {
-    res.render(path.join(__dirname, '/index.html'));
-    res.setHeader('Content-Type', 'text/plain');
-    res.write("Hello KFUPM & SWE-445");
-    res.end();
-  
-  });
-
-app.get('/signin', (req, res, next)=>{
-    res.render({firstName: 'David', lastName: 'Smith', age: 33});
+app.get('/', function (req, res, next) {
+  res.render('index');
+  // next();
 
 });
 
+app.get('/signin', (req, res, next) => {
+  res.render('signin');
+  // next()
+});
 
-app.get('/signup', (req, res, next)=>{
-    res.render({firstName: 'David', lastName: 'Smith', age: 33});
+
+app.get('/signup', (req, res, next) => {
+  res.render('signup');
+
+  // next()
 });
 
 app.listen(port);
