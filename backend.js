@@ -10,6 +10,10 @@ const port = 5500;
 // app.set('view engine', 'ejs');
 app.use(express.json());
 
+// CORS Configuration
+const cors = require('cors');
+app.use(cors()); // Use CORS package to allow cross-origin requests
+
 // Firebase Configuration
 const firebaseConfig = {
   apiKey: "AIzaSyARVSNGPiq0VmNDmlci3Vigii2rV79eCp8",
@@ -25,6 +29,7 @@ const db = getFirestore(firebase);
 
 
 // Route Handlers
+
 app.get('/api/data', (req, res) => {
   res.json({ message: "This is your API response!" });
 });
