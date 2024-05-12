@@ -1,14 +1,14 @@
 import express from 'express';
 import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore/lite';
-// import collection  from 'firebase/firestore/lite';
-// import getDocs from 'firebase/firestore/lite';
+import { getFirestore,setDocs } from 'firebase/firestore/lite';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 // Setup
 const app = express();
 const port = 5500;
 // app.set('view engine', 'ejs');
 app.use(express.json());
+res.setHeader('Content-Type', 'application/json');
 
 // CORS Configuration
 const cors = require('cors');
@@ -40,18 +40,53 @@ app.get('/', function (req, res, next) {
 
 });
 
-app.get('/signin', (req, res, next) => {
-  res.render('signin');
-  // next()
+app.post('/signin', (req, res, next) => {
+  usercredintials=req.body
+  let email=usercredintials.email;
+	let password=usercredintials.pass;
+	const auth = getAuth(app);
+	function signin() {
+		const auth = getAuth();
+	signInWithEmailAndPassword(auth, email, password)
+  	.then((userCredential) => {
+ 	   const user = userCredential.user;
+		arr.set(email);	
+		location.href = '/home';
+  	})
+  	.catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+	alert(errorMessage);
+  });
+				
+	}
+  next()
 });
 
 
 app.get('/signup', (req, res, next) => {
-  res.render('signup');
-
-  // next()
+  const auth = getAuth();
+		createUserWithEmailAndPassword(auth, email, password)
+			.then(async (userCredential) => {
+				// Signed in
+				const user = userCredential.user;
+				try {
+		const docRef = await setDoc(doc(db, 'user',email), {
+		
+		});
+		// console.log('Document written with ID: ', docRef.id);
+	} catch (e) {
+		console.error('Error adding document: ', e);
+	}
+				arr.set(email);	
+				location.href = '/editor';
+			})
+			.catch((error) => {
+				const errorCode = error.code;
+				const errorMessage = error.message;
+				alert(errorMessage);
+			});
 });
-
 
 // Server Initialization
 app.listen(port);
