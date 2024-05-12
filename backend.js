@@ -3,9 +3,13 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore/lite';
 // import collection  from 'firebase/firestore/lite';
 // import getDocs from 'firebase/firestore/lite';
+
+// Setup
 const app = express();
 const port = 5500;
 app.set('view engine', 'ejs');
+
+// Firebase Configuration
 const firebaseConfig = {
   apiKey: "AIzaSyARVSNGPiq0VmNDmlci3Vigii2rV79eCp8",
   authDomain: "swe445-project-ff236.firebaseapp.com",
@@ -18,6 +22,8 @@ const firebaseConfig = {
 const firebase = initializeApp(firebaseConfig);
 const db = getFirestore(firebase);
 
+
+// Route Handlers
 app.get('/', function (req, res, next) {
   res.render('index');
   // next();
@@ -36,5 +42,7 @@ app.get('/signup', (req, res, next) => {
   // next()
 });
 
+
+// Server Initialization
 app.listen(port);
 console.log('Server started at http://localhost:' + port);
