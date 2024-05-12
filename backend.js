@@ -7,7 +7,8 @@ import { getFirestore } from 'firebase/firestore/lite';
 // Setup
 const app = express();
 const port = 5500;
-app.set('view engine', 'ejs');
+// app.set('view engine', 'ejs');
+app.use(express.json());
 
 // Firebase Configuration
 const firebaseConfig = {
@@ -24,6 +25,10 @@ const db = getFirestore(firebase);
 
 
 // Route Handlers
+app.get('/api/data', (req, res) => {
+  res.json({ message: "This is your API response!" });
+});
+
 app.get('/', function (req, res, next) {
   res.render('index');
   // next();
