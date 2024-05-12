@@ -3,6 +3,7 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore,setDocs } from 'firebase/firestore/lite';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
+
 // Setup
 const app = express();
 const port = 5500;
@@ -11,7 +12,7 @@ app.use(express.json());
 res.setHeader('Content-Type', 'application/json');
 
 // CORS Configuration
-const cors = require('cors');
+import cors from 'cors';
 app.use(cors()); // Use CORS package to allow cross-origin requests
 
 // Firebase Configuration
@@ -41,17 +42,16 @@ app.get('/', function (req, res, next) {
 });
 
 app.post('/signin', (req, res, next) => {
-  usercredintials=req.body
-  let email=usercredintials.email;
+  	usercredintials=req.body
+  	let email=usercredintials.email;
 	let password=usercredintials.pass;
 	const auth = getAuth(app);
 	function signin() {
-		const auth = getAuth();
+	const auth = getAuth();
 	signInWithEmailAndPassword(auth, email, password)
   	.then((userCredential) => {
  	   const user = userCredential.user;
-		arr.set(email);	
-		location.href = '/home';
+
   	})
   	.catch((error) => {
     const errorCode = error.code;
@@ -78,8 +78,6 @@ app.get('/signup', (req, res, next) => {
 	} catch (e) {
 		console.error('Error adding document: ', e);
 	}
-				arr.set(email);	
-				location.href = '/editor';
 			})
 			.catch((error) => {
 				const errorCode = error.code;
